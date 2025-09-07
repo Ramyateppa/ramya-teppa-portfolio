@@ -1,12 +1,26 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navigation from "@/components/Portfolio/Navigation";
+import HeroSection from "@/components/Portfolio/HeroSection";
+import AboutSection from "@/components/Portfolio/AboutSection";
+import SkillsSection from "@/components/Portfolio/SkillsSection";
+import ExperienceSection from "@/components/Portfolio/ExperienceSection";
+import CertificationsSection from "@/components/Portfolio/CertificationsSection";
+import ContactSection from "@/components/Portfolio/ContactSection";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Index = () => {
+  useScrollAnimation();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background text-foreground">
+      <Navigation />
+      <main>
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <ExperienceSection />
+        <CertificationsSection />
+        <ContactSection />
+      </main>
     </div>
   );
 };

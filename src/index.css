@@ -2,41 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Professional Portfolio Design System - Dark Theme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark Professional Theme */
+    --background: 220 15% 8%;
+    --foreground: 210 20% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 15% 10%;
+    --card-foreground: 210 20% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 15% 10%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Professional Blue Accent */
+    --primary: 210 80% 60%;
+    --primary-foreground: 220 15% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 210 20% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 15% 12%;
+    --muted-foreground: 215 15% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 80% 60%;
+    --accent-foreground: 220 15% 8%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 210 80% 60%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Professional Portfolio Colors */
+    --hero-gradient: linear-gradient(135deg, hsl(210 80% 60%) 0%, hsl(240 80% 70%) 100%);
+    --section-gradient: linear-gradient(180deg, hsl(220 15% 8%) 0%, hsl(220 15% 10%) 100%);
+    --card-gradient: linear-gradient(145deg, hsl(220 15% 12%) 0%, hsl(220 15% 8%) 100%);
+    --text-gradient: linear-gradient(135deg, hsl(210 80% 60%) 0%, hsl(240 80% 70%) 100%);
+    
+    /* Professional Shadows */
+    --shadow-professional: 0 10px 40px -10px hsl(210 80% 60% / 0.2);
+    --shadow-card: 0 8px 32px -8px hsl(220 15% 0% / 0.3);
+    --shadow-glow: 0 0 40px hsl(210 80% 60% / 0.3);
+
+    /* Animation Variables */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -94,12 +109,82 @@ All colors MUST be HSL.
   }
 }
 
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Professional Portfolio Animations */
+@layer components {
+  .animate-section {
+    @apply opacity-0 translate-y-12 transition-all duration-1000 ease-out;
+  }
+
+  .animate-section.in-view {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .hero-gradient {
+    background: var(--hero-gradient);
+  }
+
+  .section-gradient {
+    background: var(--section-gradient);
+  }
+
+  .card-gradient {
+    background: var(--card-gradient);
+  }
+
+  .text-gradient {
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .shadow-professional {
+    box-shadow: var(--shadow-professional);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .nav-link {
+    @apply relative text-muted-foreground hover:text-primary transition-all duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  .skill-card {
+    @apply bg-card border border-border rounded-lg p-4 hover:border-primary/50 transition-all duration-300 hover:shadow-glow hover:scale-105;
+  }
+
+  .project-card {
+    @apply card-gradient border border-border rounded-xl p-6 hover:border-primary/50 transition-all duration-500 hover:shadow-professional hover:scale-105;
   }
 }
